@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var resultText: UITextView!
     
@@ -20,18 +20,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var gpaInput: UITextField!
     
-    var prg_seg_opt: String = "";
-    
-    
-    
-   
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        updateResultText()
+        gpaInput.text = String(format: "%1.2f", gpaSelector.value)
+         updateResultText()
        
     }
 
@@ -50,12 +43,15 @@ class ViewController: UIViewController {
     
     @IBAction func gpaSelectorChanged(_ sender: Any) {
 //        print("Change in gpaSelector");
+        gpaInput.text = String(format: "%1.2f", gpaSelector.value)
         updateResultText()
     }
     
     
     @IBAction func gpaInputChanged(_ sender: Any) {
 //        print("Change in gpaInputChange");
+        let val = (gpaInput.text as! NSString).floatValue
+        gpaSelector.value = val
         updateResultText()
     }
     
@@ -80,6 +76,10 @@ class ViewController: UIViewController {
         
         // Assemble the string for the text view
         resultText.text = "I am a \(prg) student in Seneca College. Currently, I am in my Level \(sem) with \(gpa) GPA score."
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
     }
  
 }
