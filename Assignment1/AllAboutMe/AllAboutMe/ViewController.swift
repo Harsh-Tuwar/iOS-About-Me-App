@@ -32,13 +32,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func programChanged(_ sender: Any) {
       //  print("Change in program");
+        if ( programSelector.selectedSegmentIndex == 0 ){
+            levelSelector.setEnabled(false, forSegmentAt: 3)
+            levelSelector.setEnabled(false, forSegmentAt: 4)
+        } else {
+            levelSelector.setEnabled(true, forSegmentAt: 3)
+            levelSelector.setEnabled(true, forSegmentAt: 4)
+        }
+        
         updateResultText()
     }
     
     
     @IBAction func levelChanged(_ sender: Any) {
 //        print("Change in level");
-        updateResultText()
+        
+            updateResultText()
     }
      
     
@@ -78,10 +87,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let sem = levelSelector.selectedSegmentIndex + 3
         let gpa = String(format: "%1.2f", gpaSelector.value)
         
-//        if ( gpaSelector.value >= 4 ){
-//            gpa = "4"
+//        if ( prg == "CPA" ){
+//
 //        } else if(gpaSelector.value <= 2){
-//            gpa = "2"
+//
 //        }
 //
         // Get and store the program selected
