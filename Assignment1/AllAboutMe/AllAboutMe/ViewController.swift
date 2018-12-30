@@ -24,7 +24,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         gpaInput.text = String(format: "%1.2f", gpaSelector.value)
-         updateResultText()
+        
+        updateResultText()
        
     }
 
@@ -44,14 +45,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func gpaSelectorChanged(_ sender: Any) {
 //        print("Change in gpaSelector");
         gpaInput.text = String(format: "%1.2f", gpaSelector.value)
+//        if ( gpaSelector.value >= 4 ){
+//            gpaInput.text = "4"
+//        } else if(gpaSelector.value <= 2){
+//            gpaInput.text = "2"
+//        }
         updateResultText()
     }
     
     
     @IBAction func gpaInputChanged(_ sender: Any) {
 //        print("Change in gpaInputChange");
-        let val = (gpaInput.text as! NSString).floatValue
+        let val = (gpaInput.text! as NSString).floatValue
         gpaSelector.value = val
+//        if ( val >= 4 ){
+//            gpaSelector.value = 4
+//        } else if(val <= 2){
+//            gpaSelector.value = 2
+//        }
         updateResultText()
     }
     
@@ -67,6 +78,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let sem = levelSelector.selectedSegmentIndex + 3
         let gpa = String(format: "%1.2f", gpaSelector.value)
         
+//        if ( gpaSelector.value >= 4 ){
+//            gpa = "4"
+//        } else if(gpaSelector.value <= 2){
+//            gpa = "2"
+//        }
+//
         // Get and store the program selected
         
     
@@ -78,7 +95,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         resultText.text = "I am a \(prg) student in Seneca College. Currently, I am in my Level \(sem) with \(gpa) GPA score."
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
  
